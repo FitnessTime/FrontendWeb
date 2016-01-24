@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Fitness Time</title>
+    <%= stylesheet_link_tag '/assets/application.css' %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <div class="container">
+        <div class="app-title">
+        <h1>Fitness Time</h1>
+        </div>
+        <div class="profile"> 
+            <% if signed_in? %>
+              <%= current_token.emailUsuario %>
+            <% end %>
+        </div>
+        </div>
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li><%= link_to 'Home', url_for(:home, :index) %></li>
+                
+                <% if signed_in? %> 
+                <li><%= link_to 'Rutinas', url_for(:sessions, :destroy) %></li>
+                <li><%= link_to 'Ejercicios', url_for(:sessions, :destroy) %></li>
+                <li><%= link_to 'Estadisticas', url_for(:sessions, :destroy) %></li>
+                <li><%= link_to 'Logout', url_for(:sessions, :destroy) %></li>
+                <% else%> 
+                <li><%= link_to 'Login', url_for(:sessions, :login) %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.navbar -->
+      </div>
+
+      <div class="container">
+        <div>
+          <%= [:error, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe %>
+        </div>
+
+        <%= yield %>
+
+      </div>
+      <!-- footer -->
+      <div class="footer">
+        <hr/>
+        <p>Fitness Time by Moscheni Leandro and Skalic Julián | 2016</p>
+      </div>
+
+    </div> 
+
+    <%= javascript_include_tag '/assets/application' %> 
+    </body>
+</html>

@@ -1,0 +1,10 @@
+
+<h1>Login</h1>
+<% form_for(@usuario, '/sessions/create') do |f| %>
+	<%= f.label :email %>
+ 	<%= f.text_field :email, :required => "required" %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <br/>
+  <%= f.submit "Login", :class => "btn btn-primary" %>
+<% end %>

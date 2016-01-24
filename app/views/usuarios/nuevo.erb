@@ -1,0 +1,17 @@
+<h1>Registro</h1>
+<% form_for(@usuario, '/usuarios/crear') do |f| %> 
+	<%= f.label :nombre %>
+	<%= f.text_field :nombre %>
+	<%= f.label :email %>
+ 	<%= f.text_field :email %>
+ 	<%= f.label "Fecha de nacimiento"%>
+ 	<%= f.text_field :fechaNacimiento, :class => "col-lg-10 form-control", placeholder: "dd/mm/aaaa", type: "date", min:Date.today %>
+ 	<%= f.label :peso%>
+ 	<%= f.text_field :peso %>
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+	<%= f.label :confirmacion_password %>
+	<%= f.password_field :confirmacion_password %>
+  <br/>
+  <%= f.submit "Crear", :class => "btn btn-primary" %>
+<% end %>
