@@ -26,13 +26,20 @@ FitnessTime::App.controllers :usuarios do
 
   post :crear do
       confirmacion_password = params[:usuario][:confirmacion_password]
+      email = params[:usuario][:email]
+      password = params[:usuario][:password]
+      nombre = params[:usuario][:nombre]
+      fecha = params[:usuario][:fechaNacimiento]
+      peso = params[:usuario][:peso]
       params[:usuario].reject!{|k,v| k == 'confirmacion_password'}
       if (params[:usuario][:password] == confirmacion_password)
-        @usuario = Usuario.new(params[:usuario])
-        if @usuario.save
+        response = Request.get_request("/registrar?email=" + email + "&pass=" + password + "&nombre=" + nombre + "&fecha=" + fecha + "&peso=" + peso)
+        status = response.code
+        if status == '200'
           flash[:success] = 'Usuario creado'
           redirect '/'
         else
+          @usuario = Usuario.new
           flash.now[:error] = 'Es necesario completar los campos'
           render 'usuarios/nuevo'
         end
@@ -41,24 +48,6 @@ FitnessTime::App.controllers :usuarios do
         flash.now[:error] = 'Password no coinciden'
         render 'usuarios/nuevo'          
       end
-  end
-
-  get :registrarr, :map => '/registrarr' do 
-
-  end
-
-  post :registrarr, :map => '/registrarr' do
-    user = Usuario.new
-    user.nombre = params[:nombre]
-    user.password = (params[:pass])
-    user.fechaNacimiento = params[:fecha]
-    user.peso = params[:peso]
-    user.email = params[:email]
-    if user.save
-      
-    else
-      
-    end
   end
 
 end

@@ -12,7 +12,7 @@ FitnessTime::App.controllers :sessions do
     email = params[:usuario][:email]
     password = params[:usuario][:password]
     
-    response = Request.get_request("http://localhost:3001/autenticar/" + email + "/" + password)
+    response = Request.get_request("/autenticar?email=" + email + "&pass=" + password)
     securityToken = SecurityToken.json_create(JSON.parse(response.body))
     if (securityToken.idUsuario == 0)
       @usuario = Usuario.new
