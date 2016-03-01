@@ -1,4 +1,4 @@
-require "json"
+require 'dm-serializer'
 
 class SecurityToken 
 
@@ -23,6 +23,6 @@ class SecurityToken
   	end
 
   	def self.json_create(o)
-    	SecurityToken.new(o["data"]["idUsuario"],o["data"]["nombreUsuario"],o["data"]["emailUsuario"],o["data"]["authToken"])
+    	SecurityToken.new(o["idUsuario"],o["nombreUsuario"],o["emailUsuario"],o["authToken"])
   	end
 end
