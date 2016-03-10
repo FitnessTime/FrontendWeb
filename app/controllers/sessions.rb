@@ -1,5 +1,4 @@
 require 'net/http'
-require "json"
 
 FitnessTime::App.controllers :sessions do
   
