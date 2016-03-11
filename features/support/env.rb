@@ -22,4 +22,4 @@ end
 DataMapper.auto_migrate!
 
 #Capybara.default_driver = :selenium
-Capybara.app = FitnessTime::App.tap { |app|  }
+Capybara.app = FitnessTimeApi::App.tap { |app|  }
