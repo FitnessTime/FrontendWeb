@@ -2,10 +2,10 @@
   <fieldset>
     <legend>Registro</legend>
 
-		<% form_for(@usuario, '/usuarios/crear') do |f| %> 
+		<% form_for(@usuario, '/registrarUsuario') do |f| %>
 			<div class="form-group">
 				<div class="form-group has-warning">
-					
+
 					<%= f.text_field :nombre, :class=>"form-control" , placeholder: :nombre, required: true %>
 				</div>
 				<div class="form-group has-warning">

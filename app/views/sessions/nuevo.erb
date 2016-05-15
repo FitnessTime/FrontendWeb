@@ -1,9 +1,9 @@
 <div class="jumbotron" style="width:50%;">
   <fieldset>
     <legend>Login</legend>
-    
 
-      <% form_for(@usuario, '/sessions/create') do |f| %>
+
+      <% form_for(@usuario, '/login') do |f| %>
         <div class="form-group">
           <div class="form-group has-warning">
             <%= f.label :email, :class=>"control-label"%>
@@ -17,6 +17,6 @@
           <%= f.submit "<i class=\"icon-search icon-white\">face</i>".html_safe, :class => "btn btn-raised btn-warning" %>
         </div>
       <% end %>
-    
+
   </fieldset>
 </div>
