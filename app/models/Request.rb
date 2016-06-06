@@ -4,7 +4,7 @@ class Request
 
 		req = Net::HTTP::Get.new(path)
 		#req.set_form_data({'pass' => password}) for headers
-    	http = Net::HTTP.new(Constantes.host)
+    	http = Net::HTTP.new(Constantes.host, Constantes.port)
     	http.request(req)
 	end
 

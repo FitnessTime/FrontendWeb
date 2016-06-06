@@ -1,0 +1,45 @@
+<% if @rutinas.length == 0 %>
+	<div >
+          <p>No tiene rutinas asociadas.</p>
+    </div>
+<% else%> 
+<div class="search-box">
+	<form method="POST" action="search" class="form-search">
+		 <%= csrf_token_field %>
+		<input type="text" name="q" />
+		<input type="submit" value="search" class="btn btn-primary"/>
+	</form>
+</div>
+	<table class="table table-bordered">
+		<tr class="header">
+			<th>Descripcion</th>
+			<th>Aclaracion</th>
+			<th>Inicio</th>
+			<th>Fin</th>
+		</tr>
+		<% @rutinas.each do | rutina| %>
+
+		<tr>
+			<td>
+				<%= rutina['descripcion'] %>
+			</td>
+			<td>
+				<%= rutina['aclaracion'] %>
+			</td>
+			<td>
+				<%= rutina['inicio'] %>
+			</td>
+			<td>
+				<%= rutina['fin'] %>
+			</td>	
+			<td>
+				<%= link_to  :class => "glyphicon glyphicon-pencil" %>
+			</td>			
+		</tr>
+
+	  <% end %>
+
+	</table>                  
+<% end %>
+
+<a href="javascript:void(0)" class="btn btn-warning btn-fab" style="float:right"><i class="material-icons">grade</i></a>

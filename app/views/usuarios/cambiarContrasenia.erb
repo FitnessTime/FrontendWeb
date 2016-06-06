@@ -1,6 +1,6 @@
 <div class="jumbotron" style="width:50%;">
   <fieldset>
-    <legend>Login</legend>
+    <legend>Cambiar contraseña</legend>
     
 
       <% form_for(@usuario, '/sessions/create') do |f| %>
@@ -10,11 +10,11 @@
  	          <%= f.text_field :email, :required => "required", :class=>"form-control"%>
           </div>
           <div class="form-group has-warning">
-            <%= f.label :password, :class=>"control-label"%>
-            <%= f.password_field :password, :class=>"form-control" %>
+            <%= f.label :email, :class=>"control-label"%>
+            <%= f.text_field :email, :required => "required", :class=>"form-control"%>
           </div>
           <br/>
-          <%= f.submit "Iniciar sesion", :class => "btn btn-raised btn-warning" %>
+          <%= f.submit "Aceptar-+", :class => "btn btn-raised btn-warning" %>
         </div>
       <% end %>
     

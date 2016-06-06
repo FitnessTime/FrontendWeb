@@ -10,17 +10,26 @@ FitnessTime::App.controllers :sessions do
   post :create do
     email = params[:usuario][:email]
     password = params[:usuario][:password]
-    
-    response = Request.get_request("/autenticar?email=" + email + "&pass=" + password)
-    securityToken = SecurityToken.json_create(JSON.parse(response.body))
-    if (securityToken.idUsuario == 0)
-      @usuario = Usuario.new
-      flash.now[:error] = 'Usuario o password invalidos'
-      render 'sessions/nuevo'
-    else
-      sign_in securityToken
-      redirect '/'          
-    end
+    #begin
+
+      response = Request.get_request("/login?email=" + email + "&pass=" + password)
+      
+    #  securityToken = SecurityToken.json_create(response.body)
+    #  response.body["emailUsuario"]
+      if (response.code == "200")
+        sign_in JSON.parse(response.body)
+    #    sign_in securityToken
+        redirect '/'
+      else
+        @usuario = params[:usuario]
+        flash.now[:error] = 'Usuario o password invalidos'
+        render 'sessions/nuevo'
+      end
+    #rescue Exception
+    #  @usuario = Usuario.new
+    #  flash.now[:error] = 'Error del servidor, intente nuevamente.'
+    #  render 'sessions/nuevo'
+    #end
   end
 
   get :destroy, :map => '/logout' do 
