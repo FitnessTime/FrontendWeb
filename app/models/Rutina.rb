@@ -11,7 +11,7 @@ class Rutina
     property :versionMobile, Integer , :default => 0
     property :estaSincronizado, Boolean, :default => false
     property :esDeCarga, Boolean
-    property :eliminada, Boolean
+    property :eliminada, Boolean, :default => false
     property :inicioCambio, Boolean, :default => false
     property :finCambio, Boolean, :default => false
     property :descripcionCambio, Boolean, :default => false

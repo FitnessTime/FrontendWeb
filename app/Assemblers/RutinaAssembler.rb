@@ -1,8 +1,9 @@
 require_relative '../DTOs/RutinaDTO.rb'
 
+
 class RutinaAssembler
 
-	def crear_dto (rutina)
+	def crear_dto (rutina, usuario)
         
         rutinaDTO = RutinaDTO.new
         rutinaDTO.idWeb = rutina.id
@@ -16,21 +17,13 @@ class RutinaAssembler
         rutinaDTO.estaSincronizado = rutina.estaSincronizado
         rutinaDTO.esDeCarga = rutina.esDeCarga
         rutinaDTO.eliminada = rutina.eliminada
-        rutinaDTO.idUsuario = rutina.usuario.email
+        rutinaDTO.idUsuario = usuario
         rutinaDTO.inicioCambio = rutina.inicioCambio
         rutinaDTO.finCambio = rutina.finCambio
         rutinaDTO.descripcionCambio = rutina.descripcionCambio
         rutinaDTO.aclaracionCambio = rutina.aclaracionCambio
 
-        ejerciciosDto = Array.new(rutina.ejercicios.size)
-        assembler = EjercicioAssembler.new
-        index = 0
-        rutina.ejercicios.each do |ejercicio|
-            ejerciciosDto[index] = assembler.crear_dto(ejercicio,rutina.esDeCarga)
-            index = index + 1
-        end
 
-        rutinaDTO.ejerciciosDTO = ejerciciosDto
         return rutinaDTO
     end
 

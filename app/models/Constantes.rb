@@ -5,11 +5,11 @@ class Constantes
 	end
 
 	def self.host()
-		'api-fitnesstime.herokuapp.com'
-		#'127.0.0.1'
+		#'api-fitnesstime.herokuapp.com'
+		'127.0.0.1'
 	end
 
 	def self.port()
-		'8080'
+		'8082'
 	end
 end

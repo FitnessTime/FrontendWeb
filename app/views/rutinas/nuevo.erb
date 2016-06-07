@@ -1,0 +1,28 @@
+<div class="jumbotron" style="width:50%;">
+  <fieldset>
+    <legend>Agregar rutina</legend>
+
+
+      <% form_for(@rutina, 'rutinas/crear') do |f| %>
+        <div class="form-group">
+          <div class="form-group has-warning">
+
+            <%= f.text_field :descripcion, :class=>"form-control" , placeholder: :descripcion, required: true %>
+          </div>
+          <div class="form-group has-warning">
+            <%= f.text_field :aclaracion, :class=>"form-control", placeholder: :aclaracion, required: true %>
+          </div>
+          <div class="form-group has-warning">
+            <%= f.text_field :inicio, :class => "col-lg-10 form-control", placeholder: "Fecha de inicio (dd-mm-aaaa)", type: "date", required: true %>
+          </div>
+          <div class="form-group has-warning">
+            <%= f.text_field :fin, :class => "col-lg-10 form-control", placeholder: "Fecha de fin (dd-mm-aaaa)", type: "date", required: true %>
+          </div>
+            <%= f.check_box :esDeCarga, :class=>"form-control", placeholder: :esDeCarga %>
+            <br/>
+            <%= f.submit "Crear" ,:class => "btn btn-raised btn-warning" %>
+        </div>
+      <% end %>
+
+  </fieldset>
+</div>
