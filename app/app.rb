@@ -8,7 +8,7 @@ module FitnessTime
     sprockets :minify => (Padrino.env == :production)
 
     #enable :sessions
-    use Rack::Session::Pool, :expire_after => 1000
+    use Rack::Session::Pool#, :expire_after => 1000
     ##
     # Caching support
     #
@@ -27,10 +27,12 @@ module FitnessTime
     ##
     # Application configuration options
     #
+    set :show_exceptions, :after_handler
+    
     set :protect_from_csrf, false
-    # set :raise_errors, true       # Raise exceptions (will stop application) (default for test)
-    # set :dump_errors, true        # Exception backtraces are written to STDERR (default for production/development)
-    # set :show_exceptions, true    # Shows a stack trace in browser (default for development)
+    #set :raise_errors, true       # Raise exceptions (will stop application) (default for test)
+     #set :dump_errors, true        # Exception backtraces are written to STDERR (default for production/development)
+     #set :show_exceptions, true    # Shows a stack trace in browser (default for development)
     # set :logging, true            # Logging in STDOUT for development and file for production (default only for development)
     # set :public_folder, 'foo/bar' # Location for static assets (default root/public)
     # set :reload, false            # Reload application files (default in development)
@@ -53,9 +55,13 @@ module FitnessTime
     ##
     # You can manage errors like:
     #
-    #   error 404 do
-    #     render 'errors/404'
-    #   end
+    error 404 do
+        render 'errors/404'
+    end
+    
+    error ::Exception do
+        render 'home/error'
+    end
     #
     #   error 505 do
     #     render 'errors/505'

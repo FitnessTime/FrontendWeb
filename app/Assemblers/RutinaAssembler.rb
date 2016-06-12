@@ -27,7 +27,24 @@ class RutinaAssembler
         return rutinaDTO
     end
 
-    def from_dto(rutinaDTO)
-
+    def from_json(rutinaJSON)
+        rutinaDTO = RutinaDTO.new
+        rutinaDTO.idWeb = rutinaJSON['idWeb']
+        rutinaDTO.idMobile = rutinaJSON['idMobile']
+        rutinaDTO.inicio = rutinaJSON['inicio']
+        rutinaDTO.fin = rutinaJSON['fin']
+        rutinaDTO.descripcion = rutinaJSON['descripcion']
+        rutinaDTO.aclaracion = rutinaJSON['aclaracion']
+        rutinaDTO.versionWeb = rutinaJSON['versionWeb']
+        rutinaDTO.versionMobile = rutinaJSON['versionMobile']
+        rutinaDTO.estaSincronizado = rutinaJSON['estaSincronizado']
+        rutinaDTO.esDeCarga = rutinaJSON['esDeCarga']
+        rutinaDTO.eliminada = rutinaJSON['eliminada']
+        rutinaDTO.inicioCambio = rutinaJSON['inicioCambio']
+        rutinaDTO.finCambio = rutinaJSON['finCambio']
+        rutinaDTO.descripcionCambio = rutinaJSON['descripcionCambio']
+        rutinaDTO.aclaracionCambio = rutinaJSON['aclaracionCambio']
+        #rutinaDTO.idUsuario = rutinaJSON['idUsuario']
+        return rutinaDTO
     end
 end

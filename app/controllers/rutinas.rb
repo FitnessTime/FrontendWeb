@@ -3,7 +3,9 @@ require_relative '../Assemblers/RutinaAssembler.rb'
 
 FitnessTime::App.controllers :rutinas do
   
-  get :nuevo, :map => '/nuevo' do
+@rutinas = Array.new
+
+  get :nuevo do
     @rutina = Rutina.new
     render 'rutinas/nuevo'
   end
@@ -17,7 +19,7 @@ FitnessTime::App.controllers :rutinas do
       status = response.code
       if status == '200'
          flash.now[:success] = 'Rutina creada con exito'
-         redirect 'all'
+         redirect '/rutinas/all'
       else
           @rutina = Rutina.new
           flash.now[:error] = 'Error al crear la rutina'
@@ -25,10 +27,47 @@ FitnessTime::App.controllers :rutinas do
       end
   end
 
-  get :all, :map => '/all' do
+  get :editar, :with => :rutina_id do
+    begin
+      assembler = RutinaAssembler.new
+      $rutinas.each do |rutina|
+        if(rutina['idWeb'] == params[:rutina_id].to_i)
+          @rutina = assembler.from_json(rutina)
+        end
+      end
+      render 'rutinas/editar'
+    rescue Exception
+      raise Exception, 'no hay rutinas'
+    end
+  end
+
+  post :update, :with => :rutina_id do
+    #begin
+    r = params[:rutina][:descripcion]
+    assembler = RutinaAssembler.new
+      $rutinas.each do |rutina|
+        if(rutina['idWeb'] == params[:rutina_id].to_i)
+          #@rutina = assembler.from_json(JSON.parse(params[:rutina]))
+          return r
+        end
+      end
+      response = Request.get_request("/rutinas?authToken=" + current_token["authToken"] + "&rutina=" + @rutina.to_json(''))
+      if (response.code == "200")
+        flash.now[:success] = 'Rutina modificada con exito'
+        redirect '/rutinas/all'
+      else
+        flash.now[:error] = 'Error al modificar la rutina'
+        render 'rutinas/editar'
+      end
+    #rescue Exception
+    #  raise Exception, 'no hay rutinas'
+    #end
+  end
+
+  get :all do
 	  response = Request.get_request("/rutinas?authToken=" + current_token["authToken"])
     if (response.code == "200")
-    	@rutinas = JSON.parse(response.body)
+    	$rutinas = JSON.parse(response.body)
     	render 'rutinas/all'   
       else
         @rutinas = Array.new(0)

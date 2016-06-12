@@ -1,4 +1,4 @@
-<% if @rutinas.length == 0 %>
+<% if $rutinas.length == 0 %>
 	<div >
           <p>No tiene rutinas asociadas.</p>
     </div>
@@ -17,7 +17,7 @@
 			<th>Inicio</th>
 			<th>Fin</th>
 		</tr>
-		<% @rutinas.each do | rutina| %>
+		<% $rutinas.each do | rutina| %>
 
 		<tr>
 			<td>
@@ -33,7 +33,7 @@
 				<%= rutina['fin'] %>
 			</td>	
 			<td>
-				<%= link_to  :class => "glyphicon glyphicon-pencil" %>
+				<%= link_to '',url_for(:rutinas, :editar, :rutina_id => rutina['idWeb']), :class => "glyphicon glyphicon-pencil" %>
 			</td>			
 		</tr>
 
