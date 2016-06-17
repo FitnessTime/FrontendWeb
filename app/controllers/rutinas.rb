@@ -43,16 +43,16 @@ FitnessTime::App.controllers :rutinas do
 
   post :update, :with => :rutina_id do
     #begin
-    r = params[:rutina][:descripcion]
     assembler = RutinaAssembler.new
       $rutinas.each do |rutina|
         if(rutina['idWeb'] == params[:rutina_id].to_i)
-          #@rutina = assembler.from_json(JSON.parse(params[:rutina]))
-          return r
+          @rutina = assembler.from_json(JSON.parse(params[:rutina]))
         end
       end
+      handler_response()
       response = Request.get_request("/rutinas?authToken=" + current_token["authToken"] + "&rutina=" + @rutina.to_json(''))
       if (response.code == "200")
+        handler_error()
         flash.now[:success] = 'Rutina modificada con exito'
         redirect '/rutinas/all'
       else
@@ -65,10 +65,11 @@ FitnessTime::App.controllers :rutinas do
   end
 
   get :all do
-	  response = Request.get_request("/rutinas?authToken=" + current_token["authToken"])
-    if (response.code == "200")
+	  response = handler_request()
+    if (isOk(response))
     	$rutinas = JSON.parse(response.body)
-    	render 'rutinas/all'   
+    	render 'rutinas/all'
+      render_correct_page() 
       else
         @rutinas = Array.new(0)
         flash.now[:error] = response.body
