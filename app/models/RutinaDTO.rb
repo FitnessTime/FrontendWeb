@@ -1,6 +1,5 @@
-
 class RutinaDTO
-
+    include DataMapper::Resource
 	attr_accessor :idWeb
     attr_accessor :idMobile
   	attr_accessor :inicio
