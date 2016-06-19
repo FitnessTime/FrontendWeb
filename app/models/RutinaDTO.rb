@@ -19,6 +19,24 @@ class RutinaDTO
     attr_accessor :idUsuario
     attr_accessor :ejerciciosDTO
 
+    # property :id, Serial
+    # property :idMobile, Integer
+    # property :inicio, Date
+    # property :fin, Date
+    # property :descripcion, String
+    # property :aclaracion, String
+    # property :version, Integer , :default => 0
+    # property :versionMobile, Integer , :default => 0
+    # property :estaSincronizado, Boolean, :default => false
+    # property :esDeCarga, Boolean
+    # property :eliminada, Boolean, :default => false
+    # property :inicioCambio, Boolean, :default => false
+    # property :finCambio, Boolean, :default => false
+    # property :descripcionCambio, Boolean, :default => false
+    # property :aclaracionCambio, Boolean, :default => false
+    # has n, :ejercicios
+    # belongs_to :usuario
+
     def to_json(j)
         {"idWeb" => self.idWeb, "idMobile" => self.idMobile, "inicio" => self.inicio, "fin" => self.fin,
          "descripcion" => self.descripcion, "aclaracion" => self.aclaracion, "versionWeb" => self.versionWeb,

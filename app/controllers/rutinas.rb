@@ -11,13 +11,13 @@ FitnessTime::App.controllers :rutinas do
   end
 
   post :crear do
+    # Esto del assembler y eso habria que analizarlo conceptualmente.
       assembler = RutinaAssembler.new
       rutina = Rutina.new(params[:rutina])
       rutinaDTO = assembler.crear_dto(rutina, current_token["emailUsuario"])
       
-      response = Request.post_request("/rutinas?authToken=" + current_token["authToken"] + "&rutina=" + rutinaDTO.to_json(''))
-      status = response.code
-      if status == '200'
+      response = handle_request_for_create_routine(rutinaDTO)
+      if (response_ok?(response))
          flash.now[:success] = 'Rutina creada con exito'
          redirect '/rutinas/all'
       else
@@ -28,9 +28,10 @@ FitnessTime::App.controllers :rutinas do
   end
 
   get :editar, :with => :rutina_id do
+    # Esto del assembler y eso habria que analizarlo conceptualmente.
     begin
       assembler = RutinaAssembler.new
-      $rutinas.each do |rutina|
+      @rutinas.each do |rutina|
         if(rutina['idWeb'] == params[:rutina_id].to_i)
           @rutina = assembler.from_json(rutina)
         end
@@ -42,39 +43,35 @@ FitnessTime::App.controllers :rutinas do
   end
 
   post :update, :with => :rutina_id do
-    #begin
+    # Esto del assembler y eso habria que analizarlo conceptualmente.
+    # Por otra parte estaria bueno dejar este comportamiento en un metodo
+    # la parte del clojure me refiero
     assembler = RutinaAssembler.new
-      $rutinas.each do |rutina|
+      @rutinas.each do |rutina|
         if(rutina['idWeb'] == params[:rutina_id].to_i)
           @rutina = assembler.from_json(JSON.parse(params[:rutina]))
         end
       end
-      handler_response()
-      response = Request.get_request("/rutinas?authToken=" + current_token["authToken"] + "&rutina=" + @rutina.to_json(''))
-      if (response.code == "200")
-        handler_error()
+      response = handle_request_for_update_routine(@rutina)
+      if (response_ok?(response))
         flash.now[:success] = 'Rutina modificada con exito'
         redirect '/rutinas/all'
       else
         flash.now[:error] = 'Error al modificar la rutina'
         render 'rutinas/editar'
       end
-    #rescue Exception
-    #  raise Exception, 'no hay rutinas'
-    #end
   end
 
   get :all do
-	  response = handler_request()
-    if (isOk(response))
-    	$rutinas = JSON.parse(response.body)
-    	render 'rutinas/all'
-      render_correct_page() 
-      else
-        @rutinas = Array.new(0)
-        flash.now[:error] = response.body
-        render 'rutinas/all'
-      end
+	  response = handle_request_for_all_routines()
+    if (response_ok?(response))
+    	@rutinas = JSON.parse(response.body)
+      render 'rutinas/all'
+    else
+      @rutinas = Array.new(0)
+      flash.now[:error] = response.body
+      render 'rutinas/all'
+    end
   end
 
 end

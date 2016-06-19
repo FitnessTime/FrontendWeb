@@ -1,4 +1,3 @@
-
 class Ejercicio
 	include DataMapper::Resource
 
