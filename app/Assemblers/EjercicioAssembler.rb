@@ -1,4 +1,4 @@
-require_relative '../DTOs/EjercicioDTO.rb'
+require_relative '../models/EjercicioDTO.rb'
 
 class EjercicioAssembler
 

@@ -3,37 +3,30 @@ require_relative '../Assemblers/RutinaAssembler.rb'
 
 FitnessTime::App.controllers :rutinas do
   
-@rutinas = Array.new
-
   get :nuevo do
-    @rutina = Rutina.new
+    @rutinaDTO = RutinaDTO.new
     render 'rutinas/nuevo'
   end
 
   post :crear do
-    # Esto del assembler y eso habria que analizarlo conceptualmente.
-      assembler = RutinaAssembler.new
-      rutina = Rutina.new(params[:rutina])
-      rutinaDTO = assembler.crear_dto(rutina, current_token["emailUsuario"])
-      
+      rutinaDTO = RutinaDTO.new(params[:rutina_dto])
+      rutinaDTO.idUsuario = current_token["emailUsuario"]
       response = handle_request_for_create_routine(rutinaDTO)
       if (response_ok?(response))
          flash.now[:success] = 'Rutina creada con exito'
          redirect '/rutinas/all'
       else
-          @rutina = Rutina.new
+          @rutinaDTO = RutinaDTO.new(params[:rutina_dto])
           flash.now[:error] = 'Error al crear la rutina'
           render 'rutinas/nuevo'
       end
   end
 
   get :editar, :with => :rutina_id do
-    # Esto del assembler y eso habria que analizarlo conceptualmente.
     begin
-      assembler = RutinaAssembler.new
-      @rutinas.each do |rutina|
+      $rutinas.each do |rutina|
         if(rutina['idWeb'] == params[:rutina_id].to_i)
-          @rutina = assembler.from_json(rutina)
+          @rutinaDTO = RutinaAssembler.from_json(rutina)
         end
       end
       render 'rutinas/editar'
@@ -43,16 +36,12 @@ FitnessTime::App.controllers :rutinas do
   end
 
   post :update, :with => :rutina_id do
-    # Esto del assembler y eso habria que analizarlo conceptualmente.
-    # Por otra parte estaria bueno dejar este comportamiento en un metodo
-    # la parte del clojure me refiero
-    assembler = RutinaAssembler.new
-      @rutinas.each do |rutina|
+      $rutinas.each do |rutina|
         if(rutina['idWeb'] == params[:rutina_id].to_i)
-          @rutina = assembler.from_json(JSON.parse(params[:rutina]))
+          @rutinaDTO = RutinaDTO.new(params[:rutina_dto])
         end
       end
-      response = handle_request_for_update_routine(@rutina)
+      response = handle_request_for_update_routine(@rutinaDTO)
       if (response_ok?(response))
         flash.now[:success] = 'Rutina modificada con exito'
         redirect '/rutinas/all'
@@ -65,10 +54,10 @@ FitnessTime::App.controllers :rutinas do
   get :all do
 	  response = handle_request_for_all_routines()
     if (response_ok?(response))
-    	@rutinas = JSON.parse(response.body)
+    	$rutinas = JSON.parse(response.body)
       render 'rutinas/all'
     else
-      @rutinas = Array.new(0)
+      $rutinas = Array.new(0)
       flash.now[:error] = response.body
       render 'rutinas/all'
     end

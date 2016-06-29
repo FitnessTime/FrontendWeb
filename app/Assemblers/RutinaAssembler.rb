@@ -1,5 +1,4 @@
-require_relative '../DTOs/RutinaDTO.rb'
-
+require_relative '../models/RutinaDTO.rb'
 
 class RutinaAssembler
 
@@ -27,7 +26,7 @@ class RutinaAssembler
         return rutinaDTO
     end
 
-    def from_json(rutinaJSON)
+    def self.from_json(rutinaJSON)
         rutinaDTO = RutinaDTO.new
         rutinaDTO.idWeb = rutinaJSON['idWeb']
         rutinaDTO.idMobile = rutinaJSON['idMobile']
@@ -44,7 +43,7 @@ class RutinaAssembler
         rutinaDTO.finCambio = rutinaJSON['finCambio']
         rutinaDTO.descripcionCambio = rutinaJSON['descripcionCambio']
         rutinaDTO.aclaracionCambio = rutinaJSON['aclaracionCambio']
-        #rutinaDTO.idUsuario = rutinaJSON['idUsuario']
+        rutinaDTO.idUsuario = rutinaJSON['idUsuario']
         return rutinaDTO
     end
 end

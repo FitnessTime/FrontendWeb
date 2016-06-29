@@ -3,19 +3,13 @@
           <p>No tiene rutinas asociadas.</p>
     </div>
 <% else%> 
-<div class="search-box">
-	<form method="POST" action="search" class="form-search">
-		 <%= csrf_token_field %>
-		<input type="text" name="q" />
-		<input type="submit" value="search" class="btn btn-primary"/>
-	</form>
-</div>
-	<table class="table table-bordered">
+	<table class="table table-striped">
 		<tr class="header">
 			<th>Descripcion</th>
 			<th>Aclaracion</th>
 			<th>Inicio</th>
 			<th>Fin</th>
+			<th>Acciones</th>
 		</tr>
 		<% $rutinas.each do | rutina| %>
 
@@ -33,7 +27,10 @@
 				<%= rutina['fin'] %>
 			</td>	
 			<td>
-				<%= link_to '',url_for(:rutinas, :editar, :rutina_id => rutina['idWeb']), :class => "glyphicon glyphicon-pencil" %>
+				<center>
+					<%= link_to '',url_for(:rutinas, :editar, :rutina_id => rutina['idWeb']), :title => "Editar rutina" , :class => "glyphicon glyphicon-pencil icon-orange" %>
+					<%= link_to ' ',url_for(:rutinas, :editar, :rutina_id => rutina['idWeb']), :title => "Borrar rutina" ,:class => "glyphicon glyphicon-remove-sign icon-orange" %>
+				</center>
 			</td>			
 		</tr>
 
