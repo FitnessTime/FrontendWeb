@@ -12,11 +12,7 @@ FitnessTime::App.controllers :usuarios do
   end
 
   post :crear do
-      confirmacion_password = params[:usuario][:confirmacion_password]
-      password = params[:usuario][:password]
       usuario = Usuario.new(params[:usuario])
-      params[:usuario].reject!{|k,v| k == 'confirmacion_password'}
-      if (params[:usuario][:password] == confirmacion_password)
         response = Request.post_request("/usuarios?usuario=" + usuario.to_json)
         status = response.code
         if status == '200'
@@ -27,11 +23,6 @@ FitnessTime::App.controllers :usuarios do
           flash.now[:error] = 'Es necesario completar los campos'
           render 'usuarios/nuevo'
         end
-      else
-        @usuario = Usuario.new (params[:usuario])
-        flash.now[:error] = 'Password no coinciden'
-        render 'usuarios/nuevo'          
-      end
   end
 
 
