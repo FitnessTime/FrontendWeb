@@ -13,14 +13,11 @@ FitnessTime::App.controllers :usuarios do
 
   post :crear do
       confirmacion_password = params[:usuario][:confirmacion_password]
-      email = params[:usuario][:email]
       password = params[:usuario][:password]
-      nombre = params[:usuario][:nombre]
-      fecha = params[:usuario][:fechaNacimiento]
-      peso = params[:usuario][:peso]
+      usuario = Usuario.new(params[:usuario])
       params[:usuario].reject!{|k,v| k == 'confirmacion_password'}
       if (params[:usuario][:password] == confirmacion_password)
-        response = Request.get_request("/registrar?email=" + email + "&pass=" + password + "&nombre=" + nombre + "&fecha=" + fecha + "&peso=" + peso)
+        response = Request.post_request("/usuarios?usuario=" + usuario.to_json)
         status = response.code
         if status == '200'
           flash[:success] = 'Usuario creado'
