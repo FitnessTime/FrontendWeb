@@ -7,8 +7,8 @@ module FitnessTime
 
     sprockets :minify => (Padrino.env == :production)
 
-    #enable :sessions
-    use Rack::Session::Pool#, :expire_after => 1000
+    enable :sessions
+    #use Rack::Session::Pool#, :expire_after => 1000
     ##
     # Caching support
     #

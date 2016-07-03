@@ -58,7 +58,7 @@
                 <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                 <% if signed_in? %> 
-                <li><%= link_to 'Modificar Usuario', url_for(:sessions, :destroy) %></li>
+                <li><%= link_to 'Modificar Usuario', url_for(:usuarios, :editar) %></li>
                  <li class="divider"></li>
                 <li><%= link_to 'Cambiar contraseña', url_for(:usuarios, :cambiarContrasenia) %></li>
                 <li><%= link_to 'Ayuda', url_for(:sessions, :destroy) %></li>

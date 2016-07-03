@@ -2,7 +2,7 @@
   <fieldset>
     <legend>Editar usuario</legend>
 
-		<% form_for(@usuario, '/usuarios/editar/#{@usuario.email}"') do |f| %>
+		<% form_for(@usuario, "/usuarios/editar") do |f| %>
 			<div class="form-group">
 				<div class="form-group has-warning">
 
@@ -18,10 +18,10 @@
 			 		<%= f.text_field :peso, :class=>"form-control", placeholder: :peso, required: true %>
 			 	</div>
 			 	<div class="form-group has-warning">
-					<%= f.password_field :password, :class=>"form-control", placeholder: "password",required: true %>
+					<%= f.password_field :password,  hidden: true %>
 				</div>
 			  	<br/>
-			  	<%= f.submit "Crear" ,:class => "btn btn-raised btn-warning" %>
+			  	<%= f.submit "Editar" ,:class => "btn btn-raised btn-warning" %>
 			</div>
 		<% end %>
   </fieldset>

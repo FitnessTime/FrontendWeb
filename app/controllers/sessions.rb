@@ -10,13 +10,11 @@ FitnessTime::App.controllers :sessions do
   post :create do
     email = params[:usuario][:email]
     password = params[:usuario][:password]
-    #begin
-
-      response = Request.get_request("/login?email=" + email + "&pass=" + password)
-      
+    begin
+      response = handle_request_for_login(email, password)
     #  securityToken = SecurityToken.json_create(response.body)
     #  response.body["emailUsuario"]
-      if (response.code == "200")
+      if response_ok?(response)
         sign_in JSON.parse(response.body)
     #    sign_in securityToken
         redirect '/'
@@ -25,16 +23,25 @@ FitnessTime::App.controllers :sessions do
         flash.now[:error] = 'Usuario o password invalidos'
         render 'sessions/nuevo'
       end
-    #rescue Exception
+    rescue Exception
     #  @usuario = Usuario.new
     #  flash.now[:error] = 'Error del servidor, intente nuevamente.'
     #  render 'sessions/nuevo'
-    #end
+    end
   end
 
   get :destroy, :map => '/logout' do 
-    sign_out
-    redirect '/'          
+    begin
+      response = handle_request_for_close_session()
+      if(response_ok?(response))
+        sign_out
+      else
+        flash.now[:error] = 'No se puede cerrar sesion.'
+      end
+      redirect '/'
+    rescue Exception
+      raise Exception, 'Error al cerrar sesion'
+    end
   end
 
 end
