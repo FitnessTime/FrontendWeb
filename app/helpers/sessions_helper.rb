@@ -14,6 +14,11 @@ FitnessTime::App.helpers do
 		self.current_token = token
 	end
 
+	def modify_token(token)
+		session[:current_token] = token
+		self.current_token = token
+	end
+
 	def sign_out
 		session.delete(:current_token)
 	end

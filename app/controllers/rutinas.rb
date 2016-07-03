@@ -13,7 +13,7 @@ FitnessTime::App.controllers :rutinas do
       rutinaDTO.idUsuario = current_token["emailUsuario"]
       response = handle_request_for_create_routine(rutinaDTO)
       if (response_ok?(response))
-         flash.now[:success] = 'Rutina creada con exito'
+         flash[:success] = 'Rutina creada con exito'
          redirect '/rutinas/all'
       else
           @rutinaDTO = RutinaDTO.new(params[:rutina_dto])

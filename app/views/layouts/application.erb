@@ -62,7 +62,7 @@
                  <li class="divider"></li>
                 <li><%= link_to 'Cambiar contraseña', url_for(:usuarios, :cambiarContrasenia) %></li>
                 <li><%= link_to 'Ayuda', url_for(:sessions, :destroy) %></li>
-                <li><%= link_to 'Cerrar sesión', url_for(:sessions, :destroy) %></li>
+                <li><%= link_to 'Cerrar sesión', "#modal_cerrar_sesion", "data-toggle" => "modal" %></li>
                 <% else%> 
                 <li><%= link_to 'Iniciar sesión', url_for(:sessions, :login) %></li>
                 <% end %>
@@ -73,16 +73,34 @@
       </div>
     </div>
 
+    <div class="modal fade" id="modal_cerrar_sesion">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Cerrar sesion</h4>
+          </div>
+          <div class="modal-body">
+            <p>¿Desea cerrar sesión?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="<%= url(:sessions, :destroy) %>" class="btn btn-warning">Aceptar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="masthead">
 
         <div class="container">
-             <%= [:error, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-dismissible alert-danger fade in", :bootstrap => true) }.join.html_safe %>
+             <%= [:error, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe %>
      
 
             <%= yield %>
 
         </div>
+
 
         <!-- footer -->
         <div class="footer">
@@ -105,8 +123,7 @@
     <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.rawgit.com/fezvrasta/bootstrap-material-design/v4-dist/js/bootstrap-material-design.iife.min.js"></script>
     <script>
-      $('body').bootstrapMaterialDesign()
-      $.material.init();
+      $('body').bootstrapMaterialDesign();
     </script>
 
     </body>

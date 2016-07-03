@@ -1,7 +1,7 @@
 <div class="jumbotron" style="width:50%;">
   <fieldset>
     <legend>Agregar rutina</legend>
-
+   
       <% form_for(@rutinaDTO, '/rutinas/crear') do |f| %>
         <div class="form-group">
           <div class="form-group has-warning label-floating ">
@@ -20,7 +20,11 @@
             <label class="control-label" for="focusedInput1">Ingrese una fecha de fin (dd-mm-aaaa)</label>
             <%= f.text_field :fin, 'data-behaviour'=>'datepicker',:class => "col-lg-10 form-control", type: "date", required: true %>
           </div>
+          <div class="form-group has-warning label-floating ">
+            <label class="control-label">Es de carga</label>
             <%= f.check_box :esDeCarga, :class=>"form-control", placeholder: :esDeCarga %>
+          </div>
+            
             <br/>
             <%= f.submit "Crear" ,:class => "btn btn-raised btn-warning" %>
           </div>

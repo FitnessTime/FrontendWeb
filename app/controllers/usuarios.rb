@@ -41,7 +41,8 @@ FitnessTime::App.controllers :usuarios do
     usuario = Usuario.new(params[:usuario])
     response = handle_request_for_update_user(usuario)
     if response_ok?(response)
-      flash.now[:success] = 'Usuario modificado'
+      modify_token JSON.parse(response.body)
+      flash[:success] = 'Usuario modificado'
       redirect '/'
     else
       @usuario = Usuario.new
