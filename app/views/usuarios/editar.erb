@@ -1,8 +1,8 @@
 <div class="jumbotron" style="width:50%;">
   <fieldset>
-    <legend>Registrar usuario</legend>
+    <legend>Editar usuario</legend>
 
-		<% form_for(@usuario, 'usuarios/crear') do |f| %>
+		<% form_for(@usuario, '/usuarios/editar/#{@usuario.email}"') do |f| %>
 			<div class="form-group">
 				<div class="form-group has-warning">
 

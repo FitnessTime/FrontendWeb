@@ -35,10 +35,11 @@ FitnessTime::App.controllers :rutinas do
     end
   end
 
-  post :update, :with => :rutina_id do
+  post :editar, :with => :rutina_id do
       $rutinas.each do |rutina|
         if(rutina['idWeb'] == params[:rutina_id].to_i)
           @rutinaDTO = RutinaDTO.new(params[:rutina_dto])
+          @rutinaDTO.idUsuario = current_token['emailUsuario']
         end
       end
       response = handle_request_for_update_routine(@rutinaDTO)

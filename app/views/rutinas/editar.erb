@@ -4,10 +4,12 @@
   <fieldset>
     <legend>Editar rutina</legend>
 
-      <% form_for(@rutinaDTO, "/rutinas/update/#{@rutinaDTO.idWeb}") do |f| %>
+      <% form_for(@rutinaDTO, "/rutinas/editar/#{@rutinaDTO.idWeb}") do |f| %>
         <div class="form-group">
           <div class="form-group has-warning">
-
+            <%= f.text_field :idWeb, hidden: true %>
+          </div>
+          <div class="form-group has-warning">
             <%= f.text_field :descripcion, :class=>"form-control" , required: true %>
           </div>
           <div class="form-group has-warning">

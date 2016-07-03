@@ -6,26 +6,9 @@ class Usuario
 	property :email, String , :key => true
 
 	property :nombre, String
-	property :crypted_password, String
-	property :fechaNacimiento, Date
+	property :password, String
+	property :fecha, Date
 	property :peso, Integer
-	property :diasDeEntrenamiento, Integer, :default => 0
-	property :minimoDePasosDiarios, Integer, :default => 0
-	property :minimoDeKilometrosRecorridos, Integer, :default => 0
-	has n, :rutinas
-	has n, :pasos
-	has n, :kilometros
-
-	validates_presence_of :nombre
-	validates_presence_of :crypted_password
-	validates_presence_of :email
-	validates_presence_of :fechaNacimiento
-	validates_presence_of :peso
-	validates_format_of   :email, :with => :email_address
-
-  	def password= (password)
-    	self.crypted_password = ::BCrypt::Password.create(password) unless password.nil?
-  	end
 
   	def self.authenticate(email, password)
     	user = Usuario.find_by_email(email)

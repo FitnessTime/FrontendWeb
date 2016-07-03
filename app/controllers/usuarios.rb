@@ -13,16 +13,15 @@ FitnessTime::App.controllers :usuarios do
 
   post :crear do
       usuario = Usuario.new(params[:usuario])
-        response = Request.post_request("/usuarios?usuario=" + usuario.to_json)
-        status = response.code
-        if status == '200'
-          flash[:success] = 'Usuario creado'
-          redirect '/'
-        else
-          @usuario = Usuario.new
-          flash.now[:error] = 'Es necesario completar los campos'
-          render 'usuarios/nuevo'
-        end
+      response = handle_request_for_create_user(usuario)
+      if response_ok?(response)
+        flash[:success] = 'Usuario creado'
+        redirect '/'
+      else
+        @usuario = Usuario.new
+        flash.now[:error] = 'Es necesario completar los campos'
+        render 'usuarios/nuevo'
+      end
   end
 
 
