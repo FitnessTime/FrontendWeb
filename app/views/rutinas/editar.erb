@@ -6,6 +6,7 @@
 
       <% form_for(@rutinaDTO, "/rutinas/editar/#{@rutinaDTO.idWeb}") do |f| %>
         <div class="form-group">
+          <%= f.text_field :idWeb, hidden: true %>
           <div class="form-group has-warning label-floating ">
             <label class="control-label" for="focusedInput1">Ingrese una descripción</label>
             <%= f.text_field :descripcion, id:"focusedInput1", :class=>"form-control", type: "text" , required: true %>
@@ -23,8 +24,8 @@
             <%= f.text_field :fin, 'data-behaviour'=>'datepicker',:class => "col-lg-10 form-control", type: "date", required: true %>
           </div>
           <div class="form-group has-warning label-floating ">
-            <label class="control-label">Es de carga</label>
-            <%= f.check_box :esDeCarga, :class=>"form-control", placeholder: :esDeCarga %>
+            <label class="control-label" hidden="hidden">Es de carga</label>
+            <%= f.check_box :esDeCarga, hidden:true %>
           </div>
             <br/>
             <%= f.submit "Editar" ,:class => "btn btn-raised btn-warning" %>

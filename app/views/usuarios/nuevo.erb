@@ -4,21 +4,25 @@
 
 		<% form_for(@usuario, 'usuarios/crear') do |f| %>
 			<div class="form-group">
-				<div class="form-group has-warning">
-
-					<%= f.text_field :nombre, :class=>"form-control" , placeholder: :nombre, required: true %>
+				<div class="form-group has-warning label-floating">
+            		<label class="control-label">Ingrese su nombre</label>
+					<%= f.text_field :nombre, :class=>"form-control" , required: true %>
 				</div>
-				<div class="form-group has-warning">
-			 		<%= f.text_field :email, :class=>"form-control", placeholder: :email, required: true %>
+				<div class="form-group has-warning label-floating">
+            		<label class="control-label">Ingrese su email</label>
+			 		<%= f.text_field :email, :class=>"form-control", required: true %>
 			 	</div>
-			 	<div class="form-group has-warning">
-			 		<%= f.text_field :fecha, :class => "col-lg-10 form-control", placeholder: "fecha de nacimiento (dd-mm-aaaa)", type: "date", required: true %>
+			 	<div class="form-group has-warning label-floating">
+            		<label class="control-label">Ingrese fecha de nacimiento (dd-mm-aaaa)</label>
+			 		<%= f.text_field :fecha, :class => "col-lg-10 form-control", type: "date", required: true %>
 			 	</div>
-			 	<div class="form-group has-warning">
-			 		<%= f.text_field :peso, :class=>"form-control", placeholder: :peso, required: true %>
+			 	<div class="form-group has-warning label-floating">
+            		<label class="control-label">Ingrese su peso</label>
+			 		<%= f.text_field :peso, :class=>"form-control", required: true %>
 			 	</div>
-			 	<div class="form-group has-warning">
-					<%= f.password_field :password, :class=>"form-control", placeholder: "password",required: true %>
+			 	<div class="form-group has-warning label-floating">
+            		<label class="control-label">Ingrese contraseña</label>
+					<%= f.password_field :password, :class=>"form-control", required: true %>
 				</div>
 			  	<br/>
 			  	<%= f.submit "Crear" ,:class => "btn btn-raised btn-warning" %>

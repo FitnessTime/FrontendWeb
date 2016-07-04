@@ -18,11 +18,18 @@
     <link rel="stylesheet" type="text/css" href="/assets/ripples.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/estilos.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/roboto.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css">
+
 <link rel="stylesheet" href="//fezvrasta.github.io/snackbarjs/dist/snackbar.min.css">
 
   <body>
 
     <div class="navbar navbar-warning">
+      
+      
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
@@ -30,7 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to( "Fitness Time", "/", :class => "navbar-brand" ) %>
+          <%= link_to( "Fitness time", "/", :class => "navbar-brand" ) %>
         </div>
         <div class="navbar-collapse collapse navbar-warning-collapse">
           <% if signed_in? %>
@@ -111,20 +118,35 @@
       </div>
     </div>
 
-    <script src="//code.jquery.com/jquery-1.10.2.min.js">
+<%= javascript_include_tag '/assets/material' %>
+<%= javascript_include_tag '/assets/ripples' %>   
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://code.jquery.com/ui/1.10.2/jquery-ui.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.min.js">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
     <script src="dist/js/ripples.min.js">
     <script src="dist/js/material.min.js">
     <script src="//fezvrasta.github.io/snackbarjs/dist/snackbar.min.js">
     <script src="//cdnjs.cloudflare.com/ajax/libs/noUiSlider/6.2.0/jquery.nouislider.min.js">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/HubSpot/tether/v1.1.1/dist/js/tether.min.js"></script>
     <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.rawgit.com/fezvrasta/bootstrap-material-design/v4-dist/js/bootstrap-material-design.iife.min.js"></script>
-    <script>
-      $('body').bootstrapMaterialDesign();
-    </script>
+
+
+<script>
+$( document ).ready(function() 
+{
+    $(function() 
+    {
+      
+        $.material.init();
+    });
+});    
+</script>
+  
 
     </body>
 </html>

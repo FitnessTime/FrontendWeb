@@ -3,8 +3,7 @@
     <legend>Agregar rutina</legend>
    
       <% form_for(@rutinaDTO, '/rutinas/crear') do |f| %>
-        <div class="form-group">
-          <div class="form-group has-warning label-floating ">
+          <div class="form-group has-warning label-floating">
             <label class="control-label" for="focusedInput1">Ingrese una descripción</label>
             <%= f.text_field :descripcion, id:"focusedInput1", :class=>"form-control", type: "text" , required: true %>
           </div>
@@ -31,3 +30,4 @@
       <% end %>
   </fieldset>
 </div>
+

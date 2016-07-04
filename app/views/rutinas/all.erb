@@ -1,3 +1,4 @@
+<legend>Rutinas</legend>
 <% if $rutinas.length == 0 %>
 	<div >
           <p>No tiene rutinas asociadas.</p>
@@ -39,4 +40,4 @@
 	</table>                  
 <% end %>
 
-<a href="<%= url(:rutinas, :nuevo) %>" class="btn btn-warning btn-fab" style="float:right"><i class="material-icons">grade</i></a>
+<a href="<%= url(:rutinas, :nuevo) %>" class="btn btn-warning btn-fab" title="Agregar rutina" style="float:right"><i class="material-icons">add</i></a>
