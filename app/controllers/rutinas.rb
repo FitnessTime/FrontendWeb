@@ -64,4 +64,14 @@ FitnessTime::App.controllers :rutinas do
     end
   end
 
+  delete :eliminar do
+    response = handle_request_for_delete_routine(params[:id_rutina])
+    if (response_ok?(response))
+      redirect '/rutinas/all'
+    else
+      flash.now[:error] = "No se pudo eliminar la rutina."
+      render 'rutinas/all'
+    end
+  end
+
 end

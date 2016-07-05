@@ -30,6 +30,15 @@ FitnessTime::App.helpers do
     	end
 	end
 
+	def handle_request_for_delete_routine(idRutina)
+		begin
+			url = "/rutinas?authToken=" + current_token["authToken"] + "&id=" + idRutina
+			return Request.delete_request(url)
+		rescue Exception
+      		raise Exception, 'Error al conectar con el servidor, intente nuevamente.'
+    	end
+	end
+
 	def response_ok?(response)
 		return response.code == '200'
 	end
