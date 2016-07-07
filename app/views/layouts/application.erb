@@ -71,7 +71,7 @@
                 <li><%= link_to 'Ayuda', url_for(:sessions, :destroy) %></li>
                 <li><%= link_to 'Cerrar sesión', "#modal_cerrar_sesion", "data-toggle" => "modal" %></li>
                 <% else%> 
-                <li><%= link_to 'Iniciar sesión', url_for(:sessions, :login) %></li>
+                <li><%= link_to 'Iniciar sesión', url(:sessions, :login) %></li>
                 <% end %>
               </ul>
             </li>
@@ -101,7 +101,7 @@
       <div class="masthead">
 
         <div class="container">
-             <%= [:error, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe %>
+             <%= [:danger, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe %>
      
 
             <%= yield %>

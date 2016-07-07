@@ -2,7 +2,7 @@ require 'net/http'
 
 FitnessTime::App.controllers :sessions do
   
-  get :login, :map => '/login' do
+  get :login do
     @usuario = Usuario.new
     render 'sessions/nuevo'
   end
@@ -12,21 +12,18 @@ FitnessTime::App.controllers :sessions do
     password = params[:usuario][:password]
     begin
       response = handle_request_for_login(email, password)
-    #  securityToken = SecurityToken.json_create(response.body)
-    #  response.body["emailUsuario"]
       if response_ok?(response)
         sign_in JSON.parse(response.body)
-    #    sign_in securityToken
         redirect '/'
       else
-        @usuario = params[:usuario]
-        flash.now[:error] = 'Usuario o password invalidos'
+        @usuario = Usuario.new
+        flash.now[:danger] = 'Usuario o password invalidos'
         render 'sessions/nuevo'
       end
     rescue Exception
-    #  @usuario = Usuario.new
-    #  flash.now[:error] = 'Error del servidor, intente nuevamente.'
-    #  render 'sessions/nuevo'
+      @usuario = Usuario.new
+      flash.now[:danger] = 'Error del servidor, intente nuevamente.'
+      render 'sessions/nuevo'
     end
   end
 
@@ -36,7 +33,7 @@ FitnessTime::App.controllers :sessions do
       if(response_ok?(response))
         sign_out
       else
-        flash.now[:error] = 'No se puede cerrar sesion.'
+        flash.now[:danger] = 'No se puede cerrar sesion.'
       end
       redirect '/'
     rescue Exception
