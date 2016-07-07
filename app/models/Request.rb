@@ -4,8 +4,8 @@ class Request
 
 		req = Net::HTTP::Get.new(path)
 		#req.set_form_data({'pass' => password}) for headers
-    	#http = Net::HTTP.new(Constantes.host)
-		http = Net::HTTP.new(Constantes.host, Constantes.port)
+    	http = Net::HTTP.new(Constantes.host)
+		#http = Net::HTTP.new(Constantes.host, Constantes.port)
     	http.request(req)
 	end
 
@@ -13,8 +13,8 @@ class Request
 
 		req = Net::HTTP::Post.new(path)
 		#req.set_form_data({'pass' => password}) for headers
-    	#http = Net::HTTP.new(Constantes.host)
-    	http = Net::HTTP.new(Constantes.host, Constantes.port)
+    	http = Net::HTTP.new(Constantes.host)
+    	#http = Net::HTTP.new(Constantes.host, Constantes.port)
     	http.request(req)
 	end
 
@@ -22,8 +22,8 @@ class Request
 
 		req = Net::HTTP::Put.new(path)
 		#req.set_form_data({'pass' => password}) for headers
-    	#http = Net::HTTP.new(Constantes.host)
-    	http = Net::HTTP.new(Constantes.host, Constantes.port)
+    	http = Net::HTTP.new(Constantes.host)
+    	#http = Net::HTTP.new(Constantes.host, Constantes.port)
     	http.request(req)
 	end
 
@@ -31,8 +31,8 @@ class Request
 
 		req = Net::HTTP::Delete.new(path)
 		#req.set_form_data({'pass' => password}) for headers
-    	#http = Net::HTTP.new(Constantes.host)
-    	http = Net::HTTP.new(Constantes.host, Constantes.port)
+    	http = Net::HTTP.new(Constantes.host)
+    	#http = Net::HTTP.new(Constantes.host, Constantes.port)
     	http.request(req)
 	end
 
