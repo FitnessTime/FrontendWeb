@@ -8,19 +8,19 @@
         <div class="form-group">
           <%= f.text_field :idWeb, hidden: true %>
           <div class="form-group has-warning label-floating ">
-            <label class="control-label" for="focusedInput1">Ingrese una descripción</label>
+            <label class="control-label" for="focusedInput1">Descripción</label>
             <%= f.text_field :descripcion, id:"focusedInput1", :class=>"form-control", type: "text" , required: true %>
           </div>
           <div class="form-group has-warning label-floating ">
-            <label class="control-label" for="focusedInput1">Ingrese una aclaración</label>
+            <label class="control-label" for="focusedInput1">Nota/Aclaración</label>
             <%= f.text_field :aclaracion, :class=>"form-control", required: true %>
           </div>
           <div class="form-group has-warning label-floating ">
-            <label class="control-label" for="focusedInput1">Ingrese una fecha de inicio (dd-mm-aaaa)</label>
+            <label class="control-label" for="focusedInput1">Fecha de inicio (dd-mm-aaaa)</label>
             <%= f.text_field :inicio, :class => "col-lg-10 form-control", type: "date", required: true %>
           </div>
           <div class="form-group has-warning label-floating ">
-            <label class="control-label" for="focusedInput1">Ingrese una fecha de fin (dd-mm-aaaa)</label>
+            <label class="control-label" for="focusedInput1">Fecha de fin (dd-mm-aaaa)</label>
             <%= f.text_field :fin, 'data-behaviour'=>'datepicker',:class => "col-lg-10 form-control", type: "date", required: true %>
           </div>
           <div class="form-group has-warning label-floating ">
@@ -28,7 +28,8 @@
             <%= f.check_box :esDeCarga, hidden:true %>
           </div>
             <br/>
-            <%= f.submit "Editar" ,:class => "btn btn-raised btn-warning" %>
+            <%= f.submit "Guardar" ,:class => "btn btn-raised btn-warning" %>
+            <!-- <%= f.submit "Volver" ,:class => "btn btn-raised btn-warning" %> Aca iria un lindo volver atras-->
         </div>
       <% end %>
 
