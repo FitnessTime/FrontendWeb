@@ -1,12 +1,12 @@
 require 'net/http'
-require_relative '../Assemblers/RutinaAssembler.rb'
+require_relative '../Assemblers/EjercicioAssembler.rb'
 
 FitnessTime::App.controllers :ejercicios do
   
   get :nuevo do
-    @rutinaDTO = RutinaDTO.new
+    @ejercicioDTO = EjercicioDTO.new
     @titulo = "Ejercicio de carga"
-    render 'rutinas/nuevo'
+    render 'ejercicios/nuevo'
   end
 
   post :crear do
