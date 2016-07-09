@@ -30,13 +30,10 @@
 			<td>
 				<center>
 					<%= link_to '',url_for(:rutinas, :editar, :rutina_id => rutina['idWeb']), :title => "Editar rutina" , :class => "glyphicon glyphicon-pencil icon-orange" %>
-					<%- form_tag url(:rutinas, :eliminar, :id_rutina => rutina['idWeb']), id: 'my_form', :method => :delete, :style => 'display:inline' do %>
+					<%- form_tag url(:rutinas, :eliminar, :id_rutina => rutina['idWeb']), id: 'my_form', :method => :delete, :style => 'display:inline', :title => "Eliminar rutina" do %>
 	                	<a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;" class="glyphicon glyphicon-remove-sign icon-orange"></a>
 	                <% end %>
-					<%- form_tag url(:rutinas, :eliminar, :id_rutina => rutina['idWeb']), id: 'my_form', :method => :delete, :style => 'display:inline' do %>
-	                	<a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;" class="glyphicon glyphicon-dumbbell icon-orange"></a>
-	                <% end %>
-
+	                <%= link_to '',url_for(:ejercicios, :nuevo, :rutina_id => rutina['idWeb'], :carga => rutina['esDeCarga']), :title => "Editar rutina" , :class => "glyphicon glyphicon-remove-sign icon-orange" %>
 				</center>
 			</td>			
 		</tr>

@@ -1,0 +1,22 @@
+<legend>Ejercicios</legend>
+<% if $ejercicios.length == 0 %>
+	<div >
+          <p>No tiene ejercicios asociadas.</p>
+    </div>
+<% else%> 
+	<table class="table table-striped">
+		<tr class="header">
+			<th>Nombre</th>
+		</tr>
+		<% $ejercicios.each do |ejercicio| %>
+
+		<tr>
+			<td>
+				<%= ejercicio['nombre'] %>
+			</td>
+		</tr>
+
+	  <% end %>
+
+	</table>                  
+<% end %>

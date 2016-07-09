@@ -3,24 +3,28 @@ require_relative '../Assemblers/EjercicioAssembler.rb'
 
 FitnessTime::App.controllers :ejercicios do
   
-  get :nuevo do
+  get :nuevo , :with => :rutina_id do
     @ejercicioDTO = EjercicioDTO.new
-    @titulo = "Ejercicio de carga"
+    @ejercicioDTO.idRutina = params[:rutina_id]
+    $esDeCarga = params[:carga].to_s
+    if $esDeCarga == "true"
+      @titulo = "Ejercicio de carga"
+    else
+      @titulo = "Ejercicio aerobico"
+    end
     render 'ejercicios/nuevo'
   end
 
   post :crear do
-      rutinaDTO = RutinaDTO.new(params[:rutina_dto])
-      rutinaDTO.idUsuario = current_token["emailUsuario"]
-      response = handle_request_for_create_routine(rutinaDTO)
+      @ejercicioDTO = EjercicioDTO.new(params[:rutina_dto])
+      response = handle_request_for_create_excercise(@ejercicioDTO)
       if (response_ok?(response))
-         flash[:success] = 'Rutina creada con exito'
-         redirect '/rutinas/all'
+         flash[:success] = 'Ejercicio creado con exito'
       else
-          @rutinaDTO = RutinaDTO.new(params[:rutina_dto])
+          @ejercicioDTO = RutinaDTO.new(params[:rutina_dto])
           flash.now[:danger] = 'Error al crear la rutina'
-          render 'rutinas/nuevo'
       end
+      render 'ejercicios/nuevo'
   end
 
   get :editar, :with => :rutina_id do
@@ -54,14 +58,14 @@ FitnessTime::App.controllers :ejercicios do
   end
 
   get :all do
-	  response = handle_request_for_all_routines()
+	  response = handle_request_for_all_exercises()
     if (response_ok?(response))
-    	$rutinas = JSON.parse(response.body)
-      render 'rutinas/all'
+    	$ejercicios = JSON.parse(response.body)
+      render 'ejercicios/all'
     else
-      $rutinas = Array.new(0)
+      $ejercicios = Array.new(0)
       flash.now[:danger] = response.body
-      render 'rutinas/all'
+      render 'ejercicios/all'
     end
   end
 
