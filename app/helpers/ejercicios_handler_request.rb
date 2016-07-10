@@ -21,10 +21,10 @@ FitnessTime::App.helpers do
 	end
 
 
-	def handle_request_for_create_routine(rutinaDto)
+	def handle_request_for_create_exercise(ejericioDTO)
 		begin
-			url = "/rutinas?authToken=" + current_token["authToken"]
-			return Request.post_request(url + "&rutina=" + rutinaDto.to_json)
+			url = "/ejercicios?authToken=" + current_token["authToken"]
+			return Request.post_request(url + "&ejercicio=" + ejericioDTO.to_json)
 		rescue Exception
       		raise Exception, 'Error al conectar con el servidor, intente nuevamente.'
     	end

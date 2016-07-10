@@ -16,8 +16,8 @@ FitnessTime::App.controllers :ejercicios do
   end
 
   post :crear do
-      @ejercicioDTO = EjercicioDTO.new(params[:rutina_dto])
-      response = handle_request_for_create_excercise(@ejercicioDTO)
+      @ejercicioDTO = EjercicioDTO.new(params[:ejercicio_dto])
+      response = handle_request_for_create_exercise(@ejercicioDTO)
       if (response_ok?(response))
          flash[:success] = 'Ejercicio creado con exito'
       else
