@@ -30,9 +30,9 @@ FitnessTime::App.helpers do
     	end
 	end
 
-	def handle_request_for_delete_routine(idRutina)
+	def handle_request_for_delete_exercise(idEjercicio, esDeCarga)
 		begin
-			url = "/rutinas?authToken=" + current_token["authToken"] + "&id=" + idRutina
+			url = "/ejercicios?authToken=" + current_token["authToken"] + "&id=" + idEjercicio + '&esDeCarga=' + esDeCarga
 			return Request.delete_request(url)
 		rescue Exception
       		raise Exception, 'Error al conectar con el servidor, intente nuevamente.'

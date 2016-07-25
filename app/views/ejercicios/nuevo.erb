@@ -5,6 +5,7 @@
       <% form_for(@ejercicioDTO, '/ejercicios/crear') do |f| %>
           <%= f.text_field :idRutina, hidden: true %>
           <%= f.text_field :idWeb, hidden: true %>
+          <%= f.check_box :esDeCarga, hidden: true %>
           <div class="form-group has-warning label-floating">
             <label class="control-label" for="focusedInput1">Ingrese un nombre</label>
             <%= f.text_field :nombre, id:"focusedInput1", :class=>"form-control", type: "text" , required: true %>
@@ -31,8 +32,15 @@
           <% end%> 
           <div class="form-group has-warning label-floating ">
             <label class="control-label" for="focusedInput1">Día de la semana</label>
+             <select  class="form-control" name="dias">
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sabado">Sabado</option>
+              </select>
           </div>
-          
             
             <br/>
             <%= f.submit "Crear" ,:class => "btn btn-raised btn-warning" %>

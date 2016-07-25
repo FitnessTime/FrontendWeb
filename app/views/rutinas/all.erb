@@ -28,7 +28,6 @@
 				<%= rutina['fin'] %>
 			</td>	
 			<td>
-				<center>
 					<%= link_to '',url_for(:rutinas, :editar, :rutina_id => rutina['idWeb']), :title => "Editar rutina" , :class => "glyphicon glyphicon-pencil icon-orange" %>
 					&nbsp;
 					<%- form_tag url(:rutinas, :eliminar, :id_rutina => rutina['idWeb']), id: 'my_form', :method => :delete, :style => 'display:inline', :title => "Eliminar rutina" do %>
@@ -36,7 +35,6 @@
 	                <% end %>
 	                &nbsp;
 	                <%= link_to 'Agregar ejercicio',url_for(:ejercicios, :nuevo, :rutina_id => rutina['idWeb'], :carga => rutina['esDeCarga']), :class => "orange" %>
-				</center>
 			</td>			
 		</tr>
 
@@ -46,3 +44,11 @@
 <% end %>
 
 <a href="<%= url(:rutinas, :nuevo) %>" class="btn btn-warning btn-fab" title="Agregar rutina" style="float:right"><i class="material-icons">add</i></a>
+
+<!--
+<%= line_chart $rutinas.map { |rutina| 
+  {
+    :name => rutina['descripcion'], :data => 2,
+  } 
+} %>
+-->

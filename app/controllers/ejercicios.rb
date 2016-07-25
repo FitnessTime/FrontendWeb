@@ -1,4 +1,6 @@
 require 'net/http'
+require 'chartkick'
+include Chartkick::Helper
 require_relative '../Assemblers/EjercicioAssembler.rb'
 
 FitnessTime::App.controllers :ejercicios do
@@ -9,28 +11,33 @@ FitnessTime::App.controllers :ejercicios do
     $esDeCarga = params[:carga].to_s
     if $esDeCarga == "true"
       @titulo = "Ejercicio de carga"
+      @ejercicioDTO.esDeCarga = true
     else
       @titulo = "Ejercicio aerobico"
+      @ejercicioDTO.esDeCarga = false
     end
     render 'ejercicios/nuevo'
   end
 
   post :crear do
       @ejercicioDTO = EjercicioDTO.new(params[:ejercicio_dto])
+      @ejercicioDTO.diaDeLaSemana = params[:dias]
       response = handle_request_for_create_exercise(@ejercicioDTO)
       if (response_ok?(response))
          flash[:success] = 'Ejercicio creado con exito'
       else
-          @ejercicioDTO = RutinaDTO.new(params[:rutina_dto])
-          flash.now[:danger] = 'Error al crear la rutina'
+          @ejercicioDTO = EjercicioDTO.new
+          @ejercicioDTO.idRutina = params[:rutina_id]
+          flash.now[:danger] = 'Error al crear el ejercicio'
       end
-      render 'ejercicios/nuevo'
+
+      redirect '/rutinas/all'
   end
 
-  get :editar, :with => :rutina_id do
+  get :editar, :with => :id_ejercicio do
     begin
       $rutinas.each do |rutina|
-        if(rutina['idWeb'] == params[:rutina_id].to_i)
+        if(rutina['idWeb'] == params[:id_ejercicio].to_i)
           @rutinaDTO = RutinaAssembler.from_json(rutina)
         end
       end
@@ -40,11 +47,10 @@ FitnessTime::App.controllers :ejercicios do
     end
   end
 
-  post :editar, :with => :rutina_id do
-      $rutinas.each do |rutina|
-        if(rutina['idWeb'] == params[:rutina_id].to_i)
-          @rutinaDTO = RutinaDTO.new(params[:rutina_dto])
-          @rutinaDTO.idUsuario = current_token['emailUsuario']
+  post :editar, :with => :id_ejercicio do
+      $ejercicios.each do |ejercicio|
+        if(ejercicio['idWeb'] == params[:id_ejercicio].to_i)
+          @ejercicioDTO = EjercicioDTO.new(params[:ejercicio_dto])
         end
       end
       response = handle_request_for_update_routine(@rutinaDTO)
@@ -70,12 +76,12 @@ FitnessTime::App.controllers :ejercicios do
   end
 
   delete :eliminar do
-    response = handle_request_for_delete_routine(params[:id_rutina])
+    response = handle_request_for_delete_exercise(params[:id_ejercicio], params[:carga])
     if (response_ok?(response))
-      redirect '/rutinas/all'
+      redirect '/ejercicios/all'
     else
-      flash.now[:danger] = "No se pudo eliminar la rutina."
-      render 'rutinas/all'
+      flash.now[:danger] = "No se pudo eliminar el ejercicio."
+      render 'ejercicios/all'
     end
   end
 

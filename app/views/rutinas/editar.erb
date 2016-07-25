@@ -17,11 +17,11 @@
           </div>
           <div class="form-group has-warning label-floating ">
             <label class="control-label" for="focusedInput1">Fecha de inicio (dd-mm-aaaa)</label>
-            <%= f.text_field :inicio, :class => "col-lg-10 form-control", type: "date", required: true %>
+            <%= f.text_field :inicio, :class => "col-lg-10 form-control date", type: "date", required: true %>
           </div>
           <div class="form-group has-warning label-floating ">
             <label class="control-label" for="focusedInput1">Fecha de fin (dd-mm-aaaa)</label>
-            <%= f.text_field :fin, 'data-behaviour'=>'datepicker',:class => "col-lg-10 form-control", type: "date", required: true %>
+            <%= f.text_field :fin,:class => "col-lg-10 form-control date", type: "date", :id => "datepicker", required: true %>
           </div>
           <div class="form-group has-warning label-floating ">
             <label class="control-label" hidden="hidden">Es de carga</label>
@@ -35,4 +35,3 @@
 
   </fieldset>
 </div>
-

@@ -1,12 +1,16 @@
 <legend>Ejercicios</legend>
 <% if $ejercicios.length == 0 %>
-	<div >
-          <p>No tiene ejercicios asociadas.</p>
+	<div class="orange">
+          <p>No tiene ejercicios asociados.</p>
     </div>
 <% else%> 
 	<table class="table table-striped">
 		<tr class="header">
 			<th>Nombre</th>
+			<th>Series</th>
+			<th>Repeticiones</th>
+			<th>Día</th>
+			<th>Acción</th>
 		</tr>
 		<% $ejercicios.each do |ejercicio| %>
 
@@ -14,6 +18,22 @@
 			<td>
 				<%= ejercicio['nombre'] %>
 			</td>
+			<td>
+				<%= ejercicio['series'] %>
+			</td>
+			<td>
+				<%= ejercicio['repeticiones'] %>
+			</td>
+			<td>
+				<%= ejercicio['diaDeLaSemana'] %>
+			</td>
+			<td>
+					<%= link_to '',url_for(:ejercicios, :editar, :id_ejercicio => ejercicio['idWeb'], :carga => ejercicio['esDeCarga']), :title => "Editar ejercicio" , :class => "glyphicon glyphicon-pencil icon-orange" %>
+					&nbsp;
+					<%- form_tag url(:ejercicios, :eliminar, :id_ejercicio => ejercicio['idWeb'], :carga => ejercicio['esDeCarga']), id: 'my_form', :method => :delete, :style => 'display:inline', :title => "Eliminar ejercicio" do %>
+	                	<a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;" class="glyphicon glyphicon-remove-sign icon-orange"></a>
+	                <% end %>
+			</td>	
 		</tr>
 
 	  <% end %>
