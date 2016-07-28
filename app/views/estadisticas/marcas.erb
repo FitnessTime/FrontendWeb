@@ -1,0 +1,12 @@
+<!--
+<%= line_chart $rutinas.map { |rutina| 
+  {
+    name: rutina['descripcion'], data: 4
+  } 
+} %>
+-->
+
+<%= line_chart [
+  {name: "Ejercicio", data: [["0", 10], ["1", 5], ["2", 5], ["3", 6]]
+  }
+] %>

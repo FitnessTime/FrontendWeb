@@ -6,15 +6,25 @@
 <% else%> 
 	<table class="table table-striped">
 		<tr class="header">
+			<th>Tipo ejercicio</th>
 			<th>Nombre</th>
 			<th>Series</th>
 			<th>Repeticiones</th>
+			<th>Tiempo activo</th>
+			<th>Tiempo descanso</th>
 			<th>Día</th>
 			<th>Acción</th>
 		</tr>
 		<% $ejercicios.each do |ejercicio| %>
 
 		<tr>
+			<td>
+				<% if ejercicio['esDeCarga'] %>
+					Carga
+				<% else %>
+					Aerobico
+				<% end %>
+			</td>
 			<td>
 				<%= ejercicio['nombre'] %>
 			</td>
@@ -23,6 +33,12 @@
 			</td>
 			<td>
 				<%= ejercicio['repeticiones'] %>
+			</td>
+			<td>
+				<%= ejercicio['tiempoActivo'] %>
+			</td>
+			<td>
+				<%= ejercicio['tiempoDescanso'] %>
 			</td>
 			<td>
 				<%= ejercicio['diaDeLaSemana'] %>

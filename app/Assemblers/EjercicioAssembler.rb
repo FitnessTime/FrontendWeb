@@ -33,38 +33,63 @@ class EjercicioAssembler
         return ejercicioDTO
     end
 
-    def from_json (ejercicioDTO, carga)
+    #def from_json (ejercicioDTO, carga)
+    #    ejercicioDTO = EjercicioDTO.new
+    #    ejercicioDTO.idWeb = ejercicio.id
+    #    ejercicioDTO.idMobile = ejercicio.idMobile
+    #    ejercicioDTO.nombre = ejercicio.nombre
+    #    ejercicioDTO.diaDeLaSemana = ejercicio.diaDeLaSemana
+    #    ejercicioDTO.series = ejercicio.series
+    #    if(carga) 
+    #        ejercicio = EjercicioDeCarga.new
+    #        ejercicio.repeticiones = ejercicioDTO.repeticiones 
+    #        ejercicio.tiempoActivo = nil
+    #        ejercicio.tiempoDescanso = nil
+    #    else 
+    #        ejercicioDTO.repeticiones = nil 
+    #        ejercicioDTO.tiempoActivo = ejercicio.tiempoActivo
+    #        ejercicioDTO.tiempoDescanso = ejercicio.tiempoDescanso
+    #    end
+    #    ejercicio.id = ejercicio
+
+
+    #    ejercicioDTO.nombreCambio = ejercicio.nombreCambio
+    #    ejercicioDTO.diaDeLaSemanaCambio = ejercicio.diaDeLaSemanaCambio
+    #    ejercicioDTO.seriesCambio = ejercicio.seriesCambio
+    #    ejercicioDTO.repeticionesCambio = ejercicio.repeticionesCambio
+    #    ejercicioDTO.tiempoActivoCambio = ejercicio.tiempoActivoCambio
+    #    ejercicioDTO.tiempoDescansoCambio = ejercicio.tiempoDescansoCambio
+    #    ejercicioDTO.versionWeb = ejercicio.version
+    #    ejercicioDTO.versionMobile = ejercicio.versionMobile
+    #    ejercicioDTO.estaSincronizado = ejercicio.estaSincronizado
+    #    ejercicioDTO.esDeCarga = carga
+    #    ejercicioDTO.eliminada = ejercicio.eliminada
+    #    ejercicioDTO.idRutina = ejercicio.rutina.id
+    #    return ejercicioDTO
+    #end
+
+    def from_json(ejercicio)
         ejercicioDTO = EjercicioDTO.new
-        ejercicioDTO.idWeb = ejercicio.id
-        ejercicioDTO.idMobile = ejercicio.idMobile
-        ejercicioDTO.nombre = ejercicio.nombre
-        ejercicioDTO.diaDeLaSemana = ejercicio.diaDeLaSemana
-        ejercicioDTO.series = ejercicio.series
-        if(carga) 
-            ejercicio = EjercicioDeCarga.new
-            ejercicio.repeticiones = ejercicioDTO.repeticiones 
-            ejercicio.tiempoActivo = nil
-            ejercicio.tiempoDescanso = nil
-        else 
-            ejercicioDTO.repeticiones = nil 
-            ejercicioDTO.tiempoActivo = ejercicio.tiempoActivo
-            ejercicioDTO.tiempoDescanso = ejercicio.tiempoDescanso
-        end
-        ejercicio.id = ejercicio
-
-
-        ejercicioDTO.nombreCambio = ejercicio.nombreCambio
-        ejercicioDTO.diaDeLaSemanaCambio = ejercicio.diaDeLaSemanaCambio
-        ejercicioDTO.seriesCambio = ejercicio.seriesCambio
-        ejercicioDTO.repeticionesCambio = ejercicio.repeticionesCambio
-        ejercicioDTO.tiempoActivoCambio = ejercicio.tiempoActivoCambio
-        ejercicioDTO.tiempoDescansoCambio = ejercicio.tiempoDescansoCambio
-        ejercicioDTO.versionWeb = ejercicio.version
-        ejercicioDTO.versionMobile = ejercicio.versionMobile
-        ejercicioDTO.estaSincronizado = ejercicio.estaSincronizado
-        ejercicioDTO.esDeCarga = carga
-        ejercicioDTO.eliminada = ejercicio.eliminada
-        ejercicioDTO.idRutina = ejercicio.rutina.id
+        ejercicioDTO.idWeb = ejercicio['idWeb']
+        ejercicioDTO.idMobile = ejercicio['idMobile']
+        ejercicioDTO.nombre = ejercicio['nombre']
+        ejercicioDTO.diaDeLaSemana = ejercicio['diaDeLaSemana']
+        ejercicioDTO.series = ejercicio['series']
+        ejercicioDTO.repeticiones = ejercicio['repeticiones'] 
+        ejercicioDTO.tiempoActivo = ejercicio['tiempoActivo']
+        ejercicioDTO.tiempoDescanso = ejercicio['tiempoDescanso']
+        ejercicioDTO.nombreCambio = ejercicio['nombreCambio']
+        ejercicioDTO.diaDeLaSemanaCambio = ejercicio['diaDeLaSemanaCambio']
+        ejercicioDTO.seriesCambio = ejercicio['seriesCambio']
+        ejercicioDTO.repeticionesCambio = ejercicio['repeticionesCambio']
+        ejercicioDTO.tiempoActivoCambio = ejercicio['tiempoActivoCambio']
+        ejercicioDTO.tiempoDescansoCambio = ejercicio['tiempoDescansoCambio']
+        ejercicioDTO.versionWeb = ejercicio['versionWeb']
+        ejercicioDTO.versionMobile = ejercicio['versionMobile']
+        ejercicioDTO.estaSincronizado = ejercicio['estaSincronizado']
+        ejercicioDTO.esDeCarga = ejercicio['esDeCarga']
+        ejercicioDTO.eliminada = ejercicio['eliminada']
+        ejercicioDTO.idRutina = ejercicio['idRutina']
         return ejercicioDTO
     end
 end
