@@ -32,7 +32,8 @@
           <% end%> 
           <div class="form-group has-warning label-floating ">
             <label class="control-label" for="focusedInput1">Día de la semana</label>
-             <select  class="form-control" name="dias">
+             <select  class="form-control" name="dias" >
+                <option value="<%=@ejercicioDTO.diaDeLaSemana%>"><%=@ejercicioDTO.diaDeLaSemana%></option>
                 <option value="Lunes">Lunes</option>
                 <option value="Martes">Martes</option>
                 <option value="Miercoles">Miercoles</option>
@@ -43,7 +44,7 @@
           </div>
             
             <br/>
-            <%= f.submit "Guardar" ,:class => "btn btn-raised btn-warning" %>
+            <%= f.submit "Editar" ,:class => "btn btn-raised btn-warning" %>
           </div>
       <% end %>
   </fieldset>

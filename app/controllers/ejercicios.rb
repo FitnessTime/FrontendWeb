@@ -40,7 +40,6 @@ FitnessTime::App.controllers :ejercicios do
         if(ejercicio['idWeb'] == params[:id_ejercicio].to_i)
           assembler = EjercicioAssembler.new
           @ejercicioDTO = assembler.from_json(ejercicio)
-          params[:dias] = @ejercicioDTO.diaDeLaSemana
           $esDeCarga = @ejercicioDTO.esDeCarga
           if $esDeCarga 
             @titulo = "Ejercicio de carga"
@@ -60,6 +59,7 @@ FitnessTime::App.controllers :ejercicios do
       $ejercicios.each do |ejercicio|
         if(ejercicio['idWeb'] == params[:id_ejercicio].to_i)
           @ejercicioDTO = EjercicioDTO.new(params[:ejercicio_dto])
+          @ejercicioDTO.diaDeLaSemana = params[:dias]
         end
       end
       response = handle_request_for_update_exercise(@ejercicioDTO)
