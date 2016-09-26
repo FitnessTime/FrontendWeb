@@ -29,6 +29,15 @@ FitnessTime::App.helpers do
     	end
 	end
 
+	def handle_request_for_activate_user(emailUser)
+		begin
+			url = "/activar?email=" + emailUser
+			return Request.get_request(url)
+		rescue Exception
+      		raise Exception, 'Error al conectar con el servidor, intente nuevamente.'
+    	end
+	end
+
 	def response_ok?(response)
 		return response.code == '200'
 	end

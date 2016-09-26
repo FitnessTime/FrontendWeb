@@ -1,6 +1,15 @@
 FitnessTime::App.controllers :usuarios do
   
 
+  get :activar, :map => '/activar' do
+    begin
+      handle_request_for_activate_user(params[:email])
+      render 'usuarios/activar'
+    rescue Exception
+      raise Exception, 'Error interno'
+    end
+  end
+
   get :nuevo, :map => '/registrar' do
     @usuario = Usuario.new
     render 'usuarios/nuevo'
