@@ -17,8 +17,12 @@
 			 		<%= f.text_field :fecha, :class => "col-lg-10 form-control", type: "date", required: true %>
 			 	</div>
 			 	<div class="form-group has-warning label-floating">
-            		<label class="control-label">Peso</label>
+            		<label class="control-label">Ingrese su peso</label>
 			 		<%= f.text_field :peso, :class=>"form-control", required: true %>
+			 	</div>
+			 	<div class="form-group has-warning label-floating">
+            		<label class="control-label">Ingrese cantidad minima de pasos diarios</label>
+			 		<%= f.text_field :cantidadMinimaPasos, :class=>"form-control", required: true %>
 			 	</div>
 			 	<div class="form-group has-warning label-floating">
             		<label class="control-label">Contraseña</label>

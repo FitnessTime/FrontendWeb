@@ -9,6 +9,7 @@ class Usuario
 	property :password, String
 	property :fecha, Date
 	property :peso, Integer
+  property :cantidadMinimaPasos, Integer
 
   	def self.authenticate(email, password)
     	user = Usuario.find_by_email(email)

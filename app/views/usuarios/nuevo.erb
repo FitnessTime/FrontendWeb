@@ -21,6 +21,10 @@
 			 		<%= f.text_field :peso, :class=>"form-control", required: true %>
 			 	</div>
 			 	<div class="form-group has-warning label-floating">
+            		<label class="control-label">Ingrese cantidad minima de pasos diarios</label>
+			 		<%= f.text_field :cantidadMinimaPasos, :class=>"form-control", required: true %>
+			 	</div>
+			 	<div class="form-group has-warning label-floating">
             		<label class="control-label">Ingrese su contraseña</label>
 					<%= f.password_field :password, :class=>"form-control", required: true %>
 				</div>
