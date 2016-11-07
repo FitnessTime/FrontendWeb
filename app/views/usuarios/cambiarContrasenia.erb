@@ -1,6 +1,6 @@
 <div class="jumbotron" style="width:50%;">
   <fieldset>
-    <legend>Cambiar contraseña</legend>
+    <legend style="text-align:center">Cambiar contraseña</legend>
     
 
       <% form_for(@usuario, '/sessions/create') do |f| %>
@@ -14,7 +14,7 @@
             <%= f.text_field :email, :required => "required", :class=>"form-control"%>
           </div>
           <br/>
-          <%= f.submit "Aceptar-+", :class => "btn btn-raised btn-warning" %>
+          <%= f.submit "Cambiar", :class => "btn btn-raised btn-warning" %>
         </div>
       <% end %>
     

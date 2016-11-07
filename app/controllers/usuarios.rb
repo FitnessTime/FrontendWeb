@@ -40,6 +40,7 @@ FitnessTime::App.controllers :usuarios do
       @usuario.peso = current_token["pesoUsuario"]
       @usuario.fecha = current_token["fechaNacimientoUsuario"]
       @usuario.nombre = current_token["nombreUsuario"]
+      @usuario.cantidadMinimaPasos = current_token["cantidadMinimaPasosUsuario"]
       render 'usuarios/editar'
     rescue Exception
       raise Exception, 'Error interno'

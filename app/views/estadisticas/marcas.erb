@@ -1,5 +1,13 @@
 <h2>Estadisticas de rutinas</h2>
 
+<% if $estadisticas.length == 0 %>
+  <div >
+    <div class="orange">
+          <p>No tiene ejercicios con marcas</p>
+        </div>
+    </div>
+<% end%> 
+
 <% $estadisticas.each do |estadistica| %>
 
 <div class="panel panel-danger">

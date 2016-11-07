@@ -1,6 +1,6 @@
 <div class="jumbotron" style="width:50%;">
   <fieldset>
-    <legend><%= @titulo %></legend>
+    <legend style="text-align:center"><%= $titulo %></legend>
    
       <% form_for(@ejercicioDTO, '/ejercicios/crear') do |f| %>
           <%= f.text_field :idRutina, hidden: true %>

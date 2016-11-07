@@ -1,0 +1,18 @@
+<h2>Estadisticas de pasos</h2>
+
+<% $pasos.each do |paso| %>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= paso['dia']%></h3>
+  </div>
+  <div class="panel-body">
+    <%= pie_chart paso['cantidad_pasos'], height: "150px", options:false%>
+    <% if(paso['cantidad_pasos'][1][1] == 0) %>
+		<label class="orange">Objetivo cumplido</label>
+	<%else%>    
+    	<label class="orange"><%= paso['cantidad_pasos'][0][1]%> pasos dados el día de la fecha</label>
+    <%end%>
+  </div>
+</div>
+
+<%end%>

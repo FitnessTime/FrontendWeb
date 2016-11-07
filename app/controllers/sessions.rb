@@ -14,7 +14,7 @@ FitnessTime::App.controllers :sessions do
       response = handle_request_for_login(email, password)
       if response_ok?(response)
         sign_in JSON.parse(response.body)
-        redirect '/'
+        redirect '/rutinas/all'
       else
         @usuario = Usuario.new
         flash.now[:danger] = 'Usuario o password invalidos'

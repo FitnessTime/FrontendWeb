@@ -10,10 +10,10 @@ FitnessTime::App.controllers :ejercicios do
     @ejercicioDTO.idRutina = params[:rutina_id]
     $esDeCarga = params[:carga].to_s
     if $esDeCarga == "true"
-      @titulo = "Ejercicio de carga"
+      $titulo = "Ejercicio de carga"
       @ejercicioDTO.esDeCarga = true
     else
-      @titulo = "Ejercicio aerobico"
+      $titulo = "Ejercicio aerobico"
       @ejercicioDTO.esDeCarga = false
     end
     render 'ejercicios/nuevo'
