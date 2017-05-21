@@ -14,7 +14,7 @@ FitnessTime::App.helpers do
 	def handle_request_for_update_routine(rutina)
 		begin
 			url = "/rutinas?authToken=" + current_token["authToken"]
-			return Request.put_request(url + "&rutina=" + rutina.to_json)
+			return Request.put_request(url + "&rutina=" + rutina.to_json[" "] = "%20")
 		rescue Exception
       		raise Exception, 'Error al conectar con el servidor, intente nuevamente.'
     	end
@@ -24,7 +24,7 @@ FitnessTime::App.helpers do
 	def handle_request_for_create_routine(rutinaDto)
 		begin
 			url = "/rutinas?authToken=" + current_token["authToken"]
-			return Request.post_request(url + "&rutina=" + rutinaDto.to_json)
+			return Request.post_request(url + "&rutina=" + rutinaDto.to_json[" "] = "%20")
 		rescue Exception
       		raise Exception, 'Error al conectar con el servidor, intente nuevamente.'
     	end
