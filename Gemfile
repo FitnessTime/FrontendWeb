@@ -36,7 +36,7 @@ gem 'clockwork'
 gem 'twitter'
 gem 'chartkick'
 #gem 'fusioncharts-rails' 
-#gem 'dm-postgres-adapter'
+gem 'dm-postgres-adapter'
 
 # Test requirements
 group :staging, :production do
