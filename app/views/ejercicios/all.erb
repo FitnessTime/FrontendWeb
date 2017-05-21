@@ -32,12 +32,11 @@
 				<%= ejercicio['series'] %>
 			</td>
 			<td>
-				<%= if(ejercicio['repeticiones'] == nil || ejercicio['repeticiones'] == "")
-						"-"
-					else
-						ejercicio['repeticiones']
-					end
-				 %>
+				<% if(ejercicio['repeticiones'] == nil || ejercicio['repeticiones'] == "") %>
+					-
+				<%	else %>
+					<%=	ejercicio['repeticiones'] %>
+				<%	end %>
 			</td>
 			<td>
 				<%= ejercicio['tiempoActivo'] %>
