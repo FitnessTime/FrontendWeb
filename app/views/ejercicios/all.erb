@@ -39,10 +39,18 @@
 				<%	end %>
 			</td>
 			<td>
-				<%= ejercicio['tiempoActivo'] %>
+				<% if(ejercicio['tiempoActivo'] == nil || ejercicio['tiempoActivo'] == "") %>
+					-
+				<%	else %>
+					<%=	ejercicio['tiempoActivo'] %>
+				<%	end %>
 			</td>
 			<td>
-				<%= ejercicio['tiempoDescanso'] %>
+				<% if(ejercicio['tiempoDescanso'] == nil || ejercicio['tiempoDescanso'] == "") %>
+					-
+				<%	else %>
+					<%=	ejercicio['tiempoDescanso'] %>
+				<%	end %>
 			</td>
 			<td>
 				<%= ejercicio['diaDeLaSemana'] %>
