@@ -59,12 +59,12 @@
             <li><a href="<%= url(:rutinas, :all) %>">Rutinas</a></li>
             <li><a href="<%= url(:ejercicios, :all) %>">Ejercicios</a></li>
             <li class="dropdown">
-              <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Estadisticas
+              <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Estadísticas
                 <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="<%= url(:estadisticas, :marcas) %>">Progresión de cargas</a></li>
-                <li><a href="<%= url(:estadisticas, :pasos)%>">Podometro</a></li>
-                <li class="disabled"><a href="javascript:void(0)">Kilometros recorridos</a></li>
+                <li><a href="<%= url(:estadisticas, :pasos)%>">Podómetro</a></li>
+                <li class="disabled"><a href="javascript:void(0)">Kilómetros recorridos</a></li>
               </ul>
             </li>
           </ul>
@@ -81,7 +81,6 @@
                 <% if signed_in? %> 
                 <li><%= link_to 'Modificar Usuario', url_for(:usuarios, :editar) %></li>
                  <li class="divider"></li>
-                <li><%= link_to 'Cambiar contraseña', url_for(:usuarios, :cambiarContrasenia) %></li>
                 <li><%= link_to 'Ayuda', url_for(:sessions, :destroy) %></li>
                 <li><%= link_to 'Cerrar sesión', "#modal_cerrar_sesion", "data-toggle" => "modal" %></li>
                 <% else%> 
